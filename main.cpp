@@ -108,10 +108,11 @@ int main()
     {
         // TODO: Using ZIP code, find state abbreviation
         StatePair<int, string> temp;
-        zipCodeState.at(i) = temp;
+        temp = zipCodeState.at(i);
         if (temp.GetKey() == zip)
         {
             abbrev = temp.GetValue();
+            continue;
         }
     }
 
@@ -119,10 +120,11 @@ int main()
     {
         // TODO: Using state abbreviation, find state name
         StatePair<string, string> temp;
-        abbrevState.at(i) = temp;
+        temp = abbrevState.at(i);
         if (temp.GetKey() == abbrev)
         {
             state = temp.GetValue();
+            continue;
         }
     }
 
@@ -130,11 +132,15 @@ int main()
     {
         // TODO: Using state name, find population. Print pair info.
         StatePair<string, int> temp;
-        statePopulation.at(i) = temp;
+        temp = statePopulation.at(i);
         if (temp.GetKey() == state)
         {
             population = temp.GetValue();
+            continue;
         }
     }
-    cout << state << ": " << population << endl;
+    StatePair<string, int> stateAndPopulation;
+    stateAndPopulation.SetKey(state);
+    stateAndPopulation.SetValue(population);
+    stateAndPopulation.PrintInfo();
 }
